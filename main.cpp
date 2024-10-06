@@ -22,13 +22,18 @@ public:
     {
         std::cout << "Created Entity" << std::endl;
     }
+
+    void Print() {}
 };
 
 int main()
 {
     {
         // std::unique_ptr<Entity> entity = new Entity(); // Cannot do this due to the constructor for a unique pointer being explicit
-        std::unique_ptr<Entity> entity(new Entity()); // Has to be written this way due to the explicit requirement
+        // std::unique_ptr<Entity> entity(new Entity()); // Has to be written this way due to the explicit requirement
+        std::unique_ptr<Entity> entity = std::make_unique<Entity>(); // The preferred way to write a uniqe pointer is to call make_unique for exception safety.
+
+        entity->Print(); // Can access and call the Print function using the arrow operator
     }
 
     std::cin.get();
