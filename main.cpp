@@ -26,6 +26,10 @@ public:
 
 int main()
 {
+    {
+        // std::unique_ptr<Entity> entity = new Entity(); // Cannot do this due to the constructor for a unique pointer being explicit
+        std::unique_ptr<Entity> entity(new Entity()); // Has to be written this way due to the explicit requirement
+    }
 
     std::cin.get();
 }
