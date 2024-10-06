@@ -20,7 +20,7 @@ public:
 
     ~Entity()
     {
-        std::cout << "Created Entity" << std::endl;
+        std::cout << "Deleted Entity" << std::endl;
     }
 
     void Print() {}
