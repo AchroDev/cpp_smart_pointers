@@ -38,6 +38,7 @@ int main()
         std::shared_ptr<Entity> e0;
         {
             std::shared_ptr<Entity> sharedEntity = std::make_shared<Entity>(); // This is declaring a shared ptr
+            std::weak_ptr<Entity> weakEntity = sharedEntity;                   // You can use a weak_ptr with with a shared_ptr and it doesn't increase the ref count
             e0 = sharedEntity;                                                 // You can also assign a copy of the Entity here
         }
     }
