@@ -9,6 +9,11 @@
     and when one of them gets freed, the other would be pointing to memory that's been free'd and will cause a memory leak.
 */
 
+/*
+    Shared pointers may differ by compiler. But it uses Reference Counting to keep track of how many references you have left that point to the memory
+    address and once it hits 0, then it gets deleted
+*/
+
 // Example Entity class
 class Entity
 {
@@ -28,12 +33,13 @@ public:
 
 int main()
 {
-    {
-        // std::unique_ptr<Entity> entity = new Entity(); // Cannot do this due to the constructor for a unique pointer being explicit
-        // std::unique_ptr<Entity> entity(new Entity()); // Has to be written this way due to the explicit requirement
-        std::unique_ptr<Entity> entity = std::make_unique<Entity>(); // The preferred way to write a uniqe pointer is to call make_unique for exception safety.
 
-        entity->Print(); // Can access and call the Print function using the arrow operator
+    { // With a shared_ptr you can copy the object like here
+        std::shared_ptr<Entity> e0;
+        {
+            std::shared_ptr<Entity> sharedEntity = std::make_shared<Entity>(); // This is declaring a shared ptr
+            e0 = sharedEntity;                                                 // You can also assign a copy of the Entity here
+        }
     }
 
     std::cin.get();
